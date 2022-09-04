@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import Users from "./Users";
 import styles from "./UserFinder.module.css";
 import UsersContext from "../store/users-context";
+import ErrorBoundary from "./ErrorBoundary";
 
 class UserFinder extends React.Component {
   static contextType = UsersContext;
@@ -29,7 +30,9 @@ class UserFinder extends React.Component {
         <div className={styles.finder}>
           <input type="search" onChange={this.searchChangeHandler} />
         </div>
-        <Users users={this.state.filteredUsers} />
+        <ErrorBoundary>
+          <Users users={this.state.filteredUsers} />
+        </ErrorBoundary>
       </Fragment>
     );
   }
